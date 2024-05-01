@@ -15,6 +15,11 @@ public class UserRepository {
 
     public UserRepository() {
         this.users = new HashMap<>();
+
+        this.save(User.userFromName("Alice"));
+        this.save(User.userFromName("Bob"));
+        this.save(User.userFromName("Charlie"));
+        this.save(User.userFromName("David"));
     }
 
     public UserRepository(Collection<User> users) {
