@@ -2,8 +2,10 @@
 
 Roelof's Kubernetes experiment.
 
-My goal for today is to get a simple web application running in a Kubernetes cluster.
-The application consists of a frontend, stupid simple backend, and a database. This is a simple CRUD application.
+My goal for today is to get a simple web application running in a Kubernetes
+cluster.
+The application consists of a frontend, stupid simple backend, and a database.
+This is a simple CRUD application.
 
 ## License
 
@@ -11,7 +13,11 @@ The application consists of a frontend, stupid simple backend, and a database. T
 
 ## To Do List
 
-- [ ] Setup frontend using Nuxt.js
-- [ ] Setup backend in Spring Boot
+- [x] Setup frontend using Nuxt.js
+- [x] Setup backend in Spring Boot
+- [x] Figure out how to deploy in K8s
+    - One service,
+    - Two pods
+    - One router
 - [ ] Add Kubernetes configuration
 - [ ] Make it work
