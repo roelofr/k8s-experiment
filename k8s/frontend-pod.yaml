@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8s-experiment-frontend
+spec:
+  containers:
+    - name: k8s-frontend
+      image: ghcr.io/roelofr/k8s-experiment/app-frontend:latest
+  imagePullSecrets:
+    - name: regcred
