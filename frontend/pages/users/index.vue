@@ -6,9 +6,8 @@ type User = {
     updatedAt: string;
 }
 
-const {data: users} = await useFetch(`/api/user`);
-
-console.log("Fetched users %o", users);
+const toast = useToast()
+const {data: users, refresh} = await useFetch(`/api/user`);
 
 usePageTitle().value = "Users";
 
@@ -49,6 +48,35 @@ const columns = [{
     key: 'actions'
 }]
 
+const tableDisabled = ref(false)
+const deleteProfile = async (id) => {
+    tableDisabled.value = true
+
+    try {
+        const res = await fetch(`/api/user/${id}`, {
+            method: 'DELETE'
+        })
+
+        if (!res.ok)
+            throw Error("Failed to delete user!")
+
+        toast.add({
+            color: 'green',
+            title: 'Success',
+            description: 'User deleted successfully!'
+        })
+
+        await refresh()
+    } catch (err) {
+        toast.add({
+            color: 'red',
+            title: 'Error',
+            description: err.message
+        })
+    } finally {
+        tableDisabled.value = false
+    }
+}
 const actionItems = (row: User) => [
     [{
         label: 'View',
@@ -62,21 +90,27 @@ const actionItems = (row: User) => [
         }], [{
         label: 'Delete',
         icon: 'i-heroicons-trash-20-solid',
-        click: () => console.log('Delete', row.id)
+        click: () => deleteProfile(row.id)
     }]
 ]
 </script>
 
 <template>
     <div>
-        <UTable :columns="columns" :rows="rows">
+        <UTable :columns="columns" :rows="rows" :loading="tableDisabled">
             <template #actions-data="{ row }">
-                <UDropdown :items="actionItems(row)">
+                <UDropdown :items="actionItems(row)" :disabled="tableDisabled">
                     <UButton color="gray" variant="ghost"
                              icon="i-heroicons-ellipsis-horizontal-20-solid"/>
                 </UDropdown>
             </template>
         </UTable>
+
+        <div class="mt-8 sm:text-right">
+            <UButton @click="() => navigateTo('/users/add')">
+                Add User
+            </UButton>
+        </div>
     </div>
 </template>
 

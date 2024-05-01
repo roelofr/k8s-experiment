@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect stroke="#fff" width="100" height="50"/>
+    <path stroke="#fff" stroke-width="1" d="M0 0L100 50M0 50L100 0"/>
+</svg>

@@ -20,5 +20,7 @@ const pageTitle = usePageTitle()
                 <slot/>
             </div>
         </main>
+
+        <UNotifications/>
     </div>
 </template>
