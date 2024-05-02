@@ -19,8 +19,8 @@ backend:
 	mv backend/target/backend-*.jar dist/backend/app.jar
 
 build:
-	docker build -t ghcr.io/roelofr/k8s-experiment/app-frontend:latest -f configs/frontend.dockerfile dist/
-	docker build -t ghcr.io/roelofr/k8s-experiment/app-backend:latest -f configs/backend.dockerfile dist/
+	docker build -t ghcr.io/roelofr/k8s-experiment/app-frontend:latest -f configs/frontend.dockerfile dist/frontend/
+	docker build -t ghcr.io/roelofr/k8s-experiment/app-backend:latest -f configs/backend.dockerfile dist/backend/
 
 push:
 	docker push ghcr.io/roelofr/k8s-experiment/app-frontend:latest

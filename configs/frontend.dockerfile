@@ -8,7 +8,7 @@ RUN mkdir /opt/app
 
 WORKDIR /opt/app
 
-COPY frontend /opt/app/
+COPY . /opt/app/
 
 EXPOSE 8000
 ENV NITRO_PORT 8000
