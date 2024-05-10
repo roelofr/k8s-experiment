@@ -6,7 +6,7 @@ LABEL dev.roelofr.bundle k8s
 
 RUN mkdir /opt/app
 
-COPY backend/app.jar /opt/app
+COPY app.jar /opt/app
 
 EXPOSE 8000
 
