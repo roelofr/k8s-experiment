@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-experiment-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: k8s-experiment-ingress
+  defaultBackend:
+    service:
+      name: k8s-frontend-service
+      port:
+        number: 8000
+  rules:
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-backend-service
+                port:
+                  number: 8000

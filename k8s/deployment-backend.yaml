@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-experiment-deployment-backend
+  labels:
+    app: k8s-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-backend
+  template:
+    metadata:
+      labels:
+        app: k8s-backend
+    spec:
+      containers:
+        - name: k8s-backend
+          image: ghcr.io/roelofr/k8s-experiment/backend-app:edge
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: ghcr
