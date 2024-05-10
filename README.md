@@ -21,3 +21,41 @@ This is a simple CRUD application.
     - One router
 - [ ] Add Kubernetes configuration
 - [ ] Make it work
+
+## Running locally
+
+You should be able to cleanly install the frontend and backend applications
+using their respective README files.
+
+To run everything in your local Kubernetes cluster (like `minikube`), you should
+do the following:
+
+### Create a local registry token
+
+Make a GitHub PAT with the `packages:read` scope to pull the images here, and
+insert it as as Kubernetes secret.
+
+```bash
+kubectl create secret docker-registry ghcr \
+    --docker-server=ghcr.io \
+    --docker-username=<your_username> \
+    --docker-password=<your_github_pat>
+```
+
+Alternatively, if you have the GitHub CLI installed, you can use its token.
+
+```bash
+kubectl create secret docker-registry ghcr \
+    --docker-server=ghcr.io \
+    --docker-username=$( gh api --jq .login /user ) \
+    --docker-password=$( gh auth token )
+```
+
+### Deploy the applications
+
+All required configuration for the Kubernetes cluster is in the `k8s` directory.
+You can simply roll that out to get a somewhat functional setup.
+
+```bash
+kubectl apply -f k8s
+```
