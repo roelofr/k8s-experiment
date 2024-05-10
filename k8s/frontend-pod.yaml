@@ -5,6 +5,7 @@ metadata:
 spec:
   containers:
     - name: k8s-frontend
-      image: ghcr.io/roelofr/k8s-experiment/app-frontend:latest
+      image: ghcr.io/roelofr/k8s-experiment/frontend-app:latest
   imagePullSecrets:
-    - name: regcred
+    - name: ghcr
+  docker pull ghcr.io/roelofr/k8s-experiment/backend-app:latest
