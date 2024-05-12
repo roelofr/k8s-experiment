@@ -1,23 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-experiment-deployment-backend
+  name: k8s-experiment-deployment
   labels:
-    app: k8s-backend
+    app: k8s-experiment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-backend
+      app: k8s-experiment
   template:
     metadata:
       labels:
-        app: k8s-backend
+        app: k8s-experiment
     spec:
       containers:
         - name: k8s-backend
           image: ghcr.io/roelofr/k8s-experiment/backend-app:edge
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
+        - name: k8s-frontend
+          image: ghcr.io/roelofr/k8s-experiment/frontend-app:edge
+          ports:
+            - containerPort: 8081
       imagePullSecrets:
         - name: ghcr
