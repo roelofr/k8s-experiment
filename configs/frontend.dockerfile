@@ -10,9 +10,7 @@ WORKDIR /opt/app
 
 COPY . /opt/app/
 
-EXPOSE 8000
-ENV NITRO_PORT 8000
-
-RUN ls /opt/app/server
+EXPOSE 8081
+ENV NITRO_PORT 8081
 
 CMD ["/opt/app/server/index.mjs"]

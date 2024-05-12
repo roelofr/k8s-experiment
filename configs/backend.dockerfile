@@ -6,8 +6,10 @@ LABEL dev.roelofr.bundle k8s
 
 RUN mkdir /opt/app
 
+WORKDIR /opt/app
+
 COPY app.jar /opt/app
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["java", "-jar", "-Dserver.port=8000", "/opt/app/app.jar"]
+CMD ["java", "-jar", "-Dserver.port=8080", "/opt/app/app.jar"]
