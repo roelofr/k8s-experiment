@@ -4,8 +4,9 @@ metadata:
   name: k8s-frontend-service
 spec:
   selector:
-    app: k8s-frontend
-  type: ClusterIP
+    app: k8s-experiment
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8081
+      name: http

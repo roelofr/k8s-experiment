@@ -17,10 +17,12 @@ spec:
       containers:
         - name: k8s-backend
           image: ghcr.io/roelofr/k8s-experiment/backend-app:edge
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
         - name: k8s-frontend
           image: ghcr.io/roelofr/k8s-experiment/frontend-app:edge
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
       imagePullSecrets:
