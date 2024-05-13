@@ -12,20 +12,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/user")
 public class UserController {
     private final UserRepository userRepository;
 
-    @GetMapping("/api/user")
+    @GetMapping
     public ResponseEntity<User[]> getAll() {
         return ResponseEntity.ok(
             userRepository.findAll().toArray(new User[0])
         );
     }
 
-    @GetMapping("/api/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getOne(@PathVariable int id) {
         var result = userRepository.findById(id);
 
@@ -35,12 +37,12 @@ public class UserController {
         return ResponseEntity.ok(result.get());
     }
 
-    @PostMapping("/api/user")
+    @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
         return ResponseEntity.ok(userRepository.save(user));
     }
 
-    @PutMapping("/api/user/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable int id, @RequestBody User user) {
         if (userRepository.findById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -49,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok(userRepository.save(id, user));
     }
 
-    @DeleteMapping("/api/user/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable int id) {
         userRepository.delete(id);
 
