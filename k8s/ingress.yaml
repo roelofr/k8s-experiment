@@ -13,13 +13,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: k8s-backend-service
+                name: k8s-experiment-service
                 port:
-                  name: http
+                  name: backend
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: k8s-frontend-service
+                name: k8s-experiment-service
                 port:
-                  name: http
+                  name: frontend
