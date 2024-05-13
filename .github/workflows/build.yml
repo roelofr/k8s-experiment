@@ -103,3 +103,24 @@ jobs:
     uses: ./.github/workflows/build-docker.yml
     with:
       package: frontend
+
+  test-deploy:
+    runs-on: ubuntu-latest
+
+    needs:
+      - build-java-image
+      - build-node-image
+
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Kubernetes Cluster in Docker Environment
+        uses: medyagh/setup-minikube@latest
+
+      - name: Deploy cluster
+        run: minikube kubectl apply --wait --recursive -f k8s
