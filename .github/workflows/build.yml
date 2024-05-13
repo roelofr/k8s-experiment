@@ -130,4 +130,6 @@ jobs:
             --docker-password=${{ github.token }}
 
       - name: Deploy cluster
-        run: kubectl apply --wait --recursive -f k8s
+        run: |
+          kubectl apply --wait -f k8s/namespace.yaml
+          kubectl apply --wait --recursive -f k8s
