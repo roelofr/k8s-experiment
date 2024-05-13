@@ -1,4 +1,4 @@
-package dev.roelofr.k8s.controller;
+package dev.roelofr.k8s.web.controller;
 
 import dev.roelofr.k8s.domain.User;
 import dev.roelofr.k8s.dto.UserRepository;
