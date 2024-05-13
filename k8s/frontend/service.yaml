@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: k8s-experiment
+  labels:
+    app: k8s-experiment
+    group: frontend
+spec:
+  selector:
+    app: k8s-experiment
+    group: frontend
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8081
+      name: app
