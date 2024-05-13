@@ -16,10 +16,12 @@ This is a simple CRUD application.
 - [x] Setup frontend using Nuxt.js
 - [x] Setup backend in Spring Boot
 - [x] Figure out how to deploy in K8s
-    - One service,
-    - Two pods
-    - One router
-- [ ] Add Kubernetes configuration
+- [x] Add Kubernetes configuration
+  - Namespace
+  - Deployments
+  - Services
+  - Ingress route
+- [x] Test Kubernetes configuration in CI
 - [ ] Make it work
 
 ## Running locally
@@ -57,5 +59,5 @@ All required configuration for the Kubernetes cluster is in the `k8s` directory.
 You can simply roll that out to get a somewhat functional setup.
 
 ```bash
-kubectl apply -f k8s
+kubectl apply --recursive -f k8s
 ```
