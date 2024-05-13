@@ -122,5 +122,12 @@ jobs:
       - name: Setup Kubernetes Cluster in Docker Environment
         uses: medyagh/setup-minikube@latest
 
+      - name: Setup GitHub Container Registry in Minikube
+        run: |
+          kubectl create secret docker-registry ghcr \
+            --docker-server=ghcr.io \
+            --docker-username=${{ github.actor }} \
+            --docker-password=${{ github.token }}
+
       - name: Deploy cluster
-        run: minikube kubectl apply --wait --recursive -f k8s
+        run: kubectl apply --wait --recursive -f k8s
