@@ -59,5 +59,6 @@ All required configuration for the Kubernetes cluster is in the `k8s` directory.
 You can simply roll that out to get a somewhat functional setup.
 
 ```bash
+kubectl apply -f k8s/namespace.yaml
 kubectl apply --recursive -f k8s
 ```
