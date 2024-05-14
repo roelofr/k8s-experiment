@@ -10,6 +10,6 @@ WORKDIR /opt/app
 
 COPY app.jar /opt/app
 
-EXPOSE 8080
+EXPOSE 8000 8041
 
-CMD ["java", "-jar", "-Dserver.port=8080", "/opt/app/app.jar"]
+CMD ["java", "-jar", "-Dserver.port=8000", "-Dmanagement.server.port=8041", "/opt/app/app.jar"]
