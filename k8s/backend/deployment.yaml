@@ -24,15 +24,5 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
-          livenessProbe:
-            initialDelaySeconds: 5
-            httpGet:
-              port: 8041
-              path: /actuator/health/liveness
-          readinessProbe:
-            initialDelaySeconds: 5
-            httpGet:
-              port: 8041
-              path: /actuator/health/readiness
       imagePullSecrets:
         - name: ghcr
