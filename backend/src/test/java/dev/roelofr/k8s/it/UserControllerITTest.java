@@ -28,7 +28,7 @@ class UserControllerITTest {
         userRepository.save(userFromName("Alice"));
         userRepository.save(userFromName("Bob"));
 
-        this.mockMvc.perform(get("/user"))
+        this.mockMvc.perform(get("/api/user"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().string(allOf(
@@ -42,7 +42,7 @@ class UserControllerITTest {
         userRepository.save(userFromName("Alice"));
         userRepository.save(userFromName("Bob"));
 
-        this.mockMvc.perform(get("/user"))
+        this.mockMvc.perform(get("/api/user"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().string(allOf(
@@ -51,12 +51,12 @@ class UserControllerITTest {
                 not(containsString("Charlie"))
             )));
 
-        this.mockMvc.perform(get("/user/{id}", 3))
+        this.mockMvc.perform(get("/api/user/{id}", 3))
             .andDo(print())
             .andExpect(status().isNotFound());
 
         this.mockMvc.perform(
-                post("/user")
+                post("/api/user")
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("{\"name\": \"Charlie\"}")
@@ -68,7 +68,7 @@ class UserControllerITTest {
                 jsonPath("$.name").value("Charlie")
             );
 
-        this.mockMvc.perform(get("/user"))
+        this.mockMvc.perform(get("/api/user"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().string(allOf(
@@ -77,14 +77,14 @@ class UserControllerITTest {
                 containsString("Charlie")
             )));
 
-        this.mockMvc.perform(get("/user/{id}", 3))
+        this.mockMvc.perform(get("/api/user/{id}", 3))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id").value(3))
             .andExpect(jsonPath("$.name").value("Charlie"));
 
         this.mockMvc.perform(
-                put("/user/{id}", 3)
+                put("/api/user/{id}", 3)
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("{\"name\": \"Becky\"}")
@@ -96,21 +96,21 @@ class UserControllerITTest {
                 jsonPath("$.name").value("Becky")
             );
 
-        this.mockMvc.perform(get("/user/{id}", 3))
+        this.mockMvc.perform(get("/api/user/{id}", 3))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id").value(3))
             .andExpect(jsonPath("$.name").value("Becky"));
 
-        this.mockMvc.perform(delete("/user/{id}", 3))
+        this.mockMvc.perform(delete("/api/user/{id}", 3))
             .andDo(print())
             .andExpect(status().isResetContent());
 
-        this.mockMvc.perform(get("/user/{id}", 3))
+        this.mockMvc.perform(get("/api/user/{id}", 3))
             .andDo(print())
             .andExpect(status().isNotFound());
 
-        this.mockMvc.perform(get("/user"))
+        this.mockMvc.perform(get("/api/user"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().string(allOf(
