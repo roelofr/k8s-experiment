@@ -18,15 +18,24 @@ const dateFormat = new Intl.DateTimeFormat(undefined, {
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-
 })
+
+const safeDateTime = (input: any): null | string => {
+    try {
+        return dateFormat.format(new Date(input));
+    } catch (error) {
+        console.error("Failed to parse date %o: %o", input, error);
+        return "Error";
+    }
+}
+
 const rows = computed(() => {
     return Array.from(users?.value).map((user: User) => {
         return {
             id: user.id,
             name: user.name,
-            createdAt: dateFormat.format(new Date(user.createdAt)),
-            updatedAt: dateFormat.format(new Date(user.updatedAt)),
+            createdAt: safeDateTime(user.createdAt),
+            updatedAt: safeDateTime(user.updatedAt),
             actions: 'actions'
         }
     })
