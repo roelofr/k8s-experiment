@@ -32,3 +32,7 @@ deploy:
 
 teardown:
 	kubectl get deployments -o name | grep '^deployment.apps/k8s-' | xargs kubectl delete
+
+update:
+	cd frontend && npm update -S
+	git add frontend/package.json frontend/package-lock.json
