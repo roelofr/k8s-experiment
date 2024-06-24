@@ -32,7 +32,3 @@ deploy:
 
 teardown:
 	kubectl get deployments -o name | grep '^deployment.apps/k8s-' | xargs kubectl delete
-
-kubectl create secret generic regcred \
-    --from-file=.dockerconfigjson=/home/rroos/.docker/config.json \
-    --type=kubernetes.io/dockerconfigjson
